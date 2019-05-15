@@ -3,14 +3,12 @@ package com.casic.mpandroidchartdemo;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
@@ -55,13 +53,13 @@ public class ChartManager {
             // background color
             chart.setBackgroundColor(Color.WHITE);
 
-            // disable description text
+            // false 表示禁用说明文本
             chart.getDescription().setEnabled(false);
 
-            // enable touch gestures
+            // 启动触摸手势
             chart.setTouchEnabled(true);
 
-            // set listeners
+            // 设置图表值选中监听
             chart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
                 @Override
                 public void onValueSelected(Entry e, Highlight h) {
@@ -76,22 +74,25 @@ public class ChartManager {
                     Log.i("Nothing selected", "Nothing selected.");
                 }
             });
+
+            //false 表示不设置绘图网格背景
             chart.setDrawGridBackground(false);
 
-            // create marker to display box when values are selected
+            // 创建Marker显示框
             MyMarkerView mv = new MyMarkerView(mContext, R.layout.custom_marker_view);
 
-            // Set the marker to the chart
+            //将图表设置进Marker
             mv.setChartView(chart);
+            //将Marker设置进图表
             chart.setMarker(mv);
 
-            // enable scaling and dragging
+            // 启动缩放和拖动
             chart.setDragEnabled(true);
             chart.setScaleEnabled(true);
             // chart.setScaleXEnabled(true);
             // chart.setScaleYEnabled(true);
 
-            // force pinch zoom along both axis
+            // 沿两个轴强制收缩缩放
             chart.setPinchZoom(true);
         }
 
@@ -120,9 +121,11 @@ public class ChartManager {
             yAxis.setAxisMinimum(-50f);
         }
 
-        {   // // Create Limit Lines // //
+
+   /*     {   // // 创建限制线 // //
 
             Typeface tfRegular;
+            //设置界限
             LimitLine llXAxis = new LimitLine(9f, "Index 10");
             llXAxis.setLineWidth(4f);
             llXAxis.enableDashedLine(10f, 10f, 0f);
@@ -153,7 +156,7 @@ public class ChartManager {
             yAxis.addLimitLine(ll1);
             yAxis.addLimitLine(ll2);
             //xAxis.addLimitLine(llXAxis);
-        }
+        }*/
 
 
         // add data
